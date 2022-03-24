@@ -1,4 +1,3 @@
-# Hello-World
-First rep
-
-Hi! Let's go!
+# Hello World!
+### First repository
+### Let's go!
