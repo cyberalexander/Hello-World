@@ -14,6 +14,12 @@
 
     <developers>
         <!--TODO Add details to this section-->
+        <developer>
+            <name>Aliaksandr Leanovich</name>
+            <email>taurum13@gmail.com</email>
+            <organization>com.einarr.maximus.helloworld</organization>
+            <organizationUrl>https://github.com/Einarr-Maximus/Hello-World</organizationUrl>
+        </developer>
     </developers>
 
     <properties>
