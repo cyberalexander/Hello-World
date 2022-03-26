@@ -18,10 +18,10 @@ as new one and creates new entry in database.
 ### Schema
 ##### Users
 
-environment | username  
---- | ---  
- XXXXXXX | YYYYYYY
- AAAAAAA | BBBBBBB 
+| environment | username |
+|-------------|----------|
+| XXXXXXX     | YYYYYYY  |
+| AAAAAAA     | BBBBBBB  |
 
 ##### Notes
 * Columns environment and user are the part of **composite primary_key**
