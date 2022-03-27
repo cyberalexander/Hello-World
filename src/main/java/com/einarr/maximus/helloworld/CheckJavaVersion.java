@@ -1,4 +1,4 @@
-package src.main.java.com.einarr.maximus.helloworld;
+package com.einarr.maximus.helloworld;
 
 public class CheckJavaVersion {
 
