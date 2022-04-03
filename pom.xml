@@ -12,6 +12,14 @@
     <description>Simple java console application</description>
     <url>https://github.com/Einarr-Maximus/Hello-World</url>
 
+    <licenses>
+        <license>
+            <name>${project.licence}</name>
+            <url>${project.licence.url}</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
     <developers>
         <!--TODO Add details to this section-->
         <developer>
@@ -29,6 +37,8 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <java.version>17</java.version>
+        <license>MIT License</license>
+        <license.url>https://raw.githubusercontent.com/Einarr-Maximus/Hello-World/develop/LICENSE</license.url>
 
         <!-- ========= Plugins versions ========= -->
         <dependency.plugin.version>3.1.2</dependency.plugin.version>
