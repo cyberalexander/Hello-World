@@ -26,7 +26,7 @@ import static java.lang.System.out;
 
 public class HelloWorldApplication {
 
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
         out.println("Hello, " + System.getProperty("user.name") + "!");
     }
 }

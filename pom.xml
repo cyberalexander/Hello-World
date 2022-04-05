@@ -39,6 +39,7 @@
         <java.version>17</java.version>
         <license>MIT License</license>
         <license.url>https://raw.githubusercontent.com/Einarr-Maximus/Hello-World/develop/LICENSE</license.url>
+        <main>com.einarr.maximus.helloworld.HelloWorldApplication</main>
 
         <!-- ========= Plugins versions ========= -->
         <dependency.plugin.version>3.1.2</dependency.plugin.version>
@@ -46,6 +47,8 @@
         <compiler-plugin.version>3.8.1</compiler-plugin.version>
         <surefire.plugin.version>2.22.2</surefire.plugin.version>
         <failsafe.plugin.version>2.22.2</failsafe.plugin.version>
+        <checkstyle.plugin.version>3.1.2</checkstyle.plugin.version>
+        <checkstyle.version>9.3</checkstyle.version>
 
         <!-- ========= Dependencies versions ========= -->
         <lombok.version>1.18.22</lombok.version>
@@ -80,7 +83,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.einarr.maximus.helloworld.HelloWorldApplication</mainClass>
+                            <mainClass>${main}</mainClass>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>lib/</classpathPrefix>
                         </manifest>
@@ -124,6 +127,52 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
                 <version>${failsafe.plugin.version}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>${checkstyle.plugin.version}</version>
+                <configuration>
+                    <includeTestResources>true</includeTestResources>
+                    <includeTestSourceDirectory>true</includeTestSourceDirectory>
+                    <consoleOutput>true</consoleOutput>
+                    <linkXRef>false</linkXRef>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.puppycrawl.tools</groupId>
+                        <artifactId>checkstyle</artifactId>
+                        <version>${checkstyle.version}</version>
+                    </dependency>
+                </dependencies>
+                <executions>
+                    <execution>
+                        <id>oob-checks</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                        <configuration>
+                            <failOnViolation>true</failOnViolation>
+                            <suppressionsLocation>
+                                src/main/resources/quality/checkstyle_suppressions.xml
+                            </suppressionsLocation>
+                            <suppressionsFileExpression>
+                                checkstyle.suppressions.file
+                            </suppressionsFileExpression>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>check-custom-checks</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                        <configuration>
+                            <configLocation>src/main/resources/quality/custom_checkstyle.xml</configLocation>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
