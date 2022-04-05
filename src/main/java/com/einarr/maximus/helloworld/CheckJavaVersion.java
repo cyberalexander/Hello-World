@@ -24,7 +24,7 @@ package com.einarr.maximus.helloworld;
 
 public class CheckJavaVersion {
 
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
 
         String version = System.getProperty("java.version");
 
