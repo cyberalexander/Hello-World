@@ -10,7 +10,7 @@ public class SystemMessageUtil {
     /**
      * Получить имя операционной системы:
      *
-     * @return
+     * @return The name of the operating system, where application is running
      */
     private static String getOSName() {
         return System.getProperty("os.name").toLowerCase();
@@ -19,7 +19,7 @@ public class SystemMessageUtil {
     /**
      * Получить локальный IP-адрес;
      *
-     * @return
+     * @return The local IP Address of the hardware, where application in running
      */
     private String getLocalIpAddress() {
         String ipAddress = null;
@@ -35,7 +35,7 @@ public class SystemMessageUtil {
     /**
      * Получить MAC-адрес этой машины;
      *
-     * @return
+     * @return The MAC address
      */
     public String getLocalWindosMacAddress() {
         String mac = null;
@@ -82,7 +82,7 @@ public class SystemMessageUtil {
         return mac;
     }
 
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
         // TODO Auto-generated method stub
         SystemMessageUtil messageUtil = new SystemMessageUtil();
         System.out.println(messageUtil.getLocalIpAddress());
