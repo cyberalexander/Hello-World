@@ -21,45 +21,16 @@
  * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package com.einarr.maximus.helloworld.model;
+package com.einarr.maximus.helloworld.service;
 
-public final class Identity {
+import com.einarr.maximus.helloworld.model.Identity;
+
+public interface IdentityService {
+
     /**
-     * Variable stores the unique identifier of the environment, where application is running, or was executed.
+     * The method identifies the machine, on which the application is running
+     * and the user/account who executing the application
+     * @return The Identity information
      */
-    private String environmentId;
-    /**
-     * Variable stores the name of the user account, who executed the application.
-     */
-    private String userName;
-
-    private Identity() {
-    }
-
-    private Identity(final String envId, final String name) {
-        this.environmentId = envId;
-        this.userName = name;
-    }
-
-    public static Identity of(final String environmentId, final String userName) {
-        return new Identity(environmentId, userName);
-    }
-
-    public String getEnvironmentId() {
-        return environmentId;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    @Override
-    public String toString() {
-        return "Identity{"
-                + "environmentId='" + environmentId + '\''
-                + ", userName='" + userName + '\''
-                + '}';
-    }
-
-    //TODO Implement hashCode, equals and toString methods here
+    Identity identify();
 }

@@ -37,7 +37,7 @@ public class SystemMessageUtil {
      *
      * @return The MAC address
      */
-    public String getLocalWindosMacAddress() {
+    public static String getLocalWindosMacAddress() {
         String mac = null;
         BufferedReader bufferReader = null;
         Process process = null;

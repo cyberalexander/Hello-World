@@ -20,46 +20,35 @@
  * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
  * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
+package com.einarr.maximus.helloworld.service;
 
-package com.einarr.maximus.helloworld.model;
+import com.einarr.maximus.helloworld.model.Identity;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
-public final class Identity {
+class IdentityServiceImplTests {
+
     /**
-     * Variable stores the unique identifier of the environment, where application is running, or was executed.
+     * The instance of the {@link IdentityService} to be tested.
      */
-    private String environmentId;
-    /**
-     * Variable stores the name of the user account, who executed the application.
-     */
-    private String userName;
+    private final IdentityService service = new IdentityServiceImpl();
 
-    private Identity() {
+    @Test
+    void testIdentifyReturnsNotNull() {
+        Identity identify = service.identify();
+        Assertions.assertNotNull(identify);
     }
 
-    private Identity(final String envId, final String name) {
-        this.environmentId = envId;
-        this.userName = name;
+    @Test
+    void testIdentityUserName() {
+        String expected = System.getProperty("user.name");
+        String actual = service.identify().getUserName();
+        Assertions.assertEquals(expected, actual);
     }
 
-    public static Identity of(final String environmentId, final String userName) {
-        return new Identity(environmentId, userName);
+    //@Test
+    void testIdentityEnvironmentId() {
+        String environmentId = service.identify().getEnvironmentId();
+        Assertions.assertNotNull(environmentId);
     }
-
-    public String getEnvironmentId() {
-        return environmentId;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    @Override
-    public String toString() {
-        return "Identity{"
-                + "environmentId='" + environmentId + '\''
-                + ", userName='" + userName + '\''
-                + '}';
-    }
-
-    //TODO Implement hashCode, equals and toString methods here
 }
