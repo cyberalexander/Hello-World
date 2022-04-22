@@ -24,42 +24,93 @@
 package com.einarr.maximus.helloworld.model;
 
 public final class Identity {
-    /**
-     * Variable stores the unique identifier of the environment, where application is running, or was executed.
-     */
-    private String environmentId;
+
     /**
      * Variable stores the name of the user account, who executed the application.
      */
     private String userName;
 
-    private Identity() {
-    }
+    /**
+     * Variable stores the host name of the environment, where application is running, or was executed.
+     */
+    private String host;
 
-    private Identity(final String envId, final String name) {
-        this.environmentId = envId;
+    /**
+     * Variable stores the unique ip address given to the machine, where application is running, or was executed.
+     */
+    private String ipAddress;
+
+    private Identity(final String name, final String hostName, final String address) {
         this.userName = name;
+        this.host = hostName;
+        this.ipAddress = address;
     }
 
-    public static Identity of(final String environmentId, final String userName) {
-        return new Identity(environmentId, userName);
-    }
-
-    public String getEnvironmentId() {
-        return environmentId;
+    public static Builder builder() {
+        return new Builder();
     }
 
     public String getUserName() {
         return userName;
     }
 
+    public String getHost() {
+        return host;
+    }
+
+    public String getIpAddress() {
+        return ipAddress;
+    }
+
     @Override
     public String toString() {
         return "Identity{"
-                + "environmentId='" + environmentId + '\''
-                + ", userName='" + userName + '\''
+                + "userName='" + userName + '\''
+                + ", host='" + host + '\''
+                + ", ipAddress='" + ipAddress + '\''
                 + '}';
     }
 
     //TODO Implement hashCode, equals and toString methods here
+
+    public static final class Builder {
+
+        /**
+         * Variable stores the name of the user account, who executed the application.
+         */
+        private String userName;
+
+        /**
+         * Variable stores the host name of the environment, where application is running, or was executed.
+         */
+        private String host;
+
+        /**
+         * Variable stores the unique ip address given to the machine, where application is running, or was executed.
+         */
+        private String ipAddress;
+
+        Builder() {
+        }
+
+        public Builder userName(final String name) {
+            this.userName = name;
+            return this;
+        }
+
+        public Builder host(final String hostName) {
+            this.host = hostName;
+            return this;
+        }
+
+        public Builder ipAddress(final String address) {
+            this.ipAddress = address;
+            return this;
+        }
+
+        public Identity build() {
+            return new Identity(userName, host, ipAddress);
+        }
+    }
+
 }

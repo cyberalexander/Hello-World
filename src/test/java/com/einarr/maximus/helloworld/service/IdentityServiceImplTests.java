@@ -26,6 +26,9 @@ import com.einarr.maximus.helloworld.model.Identity;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.net.SocketException;
+import java.net.UnknownHostException;
+
 class IdentityServiceImplTests {
 
     /**
@@ -46,9 +49,8 @@ class IdentityServiceImplTests {
         Assertions.assertEquals(expected, actual);
     }
 
-    //@Test
-    void testIdentityEnvironmentId() {
-        String environmentId = service.identify().getEnvironmentId();
-        Assertions.assertNotNull(environmentId);
+    @Test
+    void testIdentityHost() throws UnknownHostException, SocketException {
+        Assertions.assertNotNull(service.identify().getHost());
     }
 }

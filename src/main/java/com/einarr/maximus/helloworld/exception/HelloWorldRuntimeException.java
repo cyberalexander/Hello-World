@@ -21,30 +21,10 @@
  * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package com.einarr.maximus.helloworld.service;
+package com.einarr.maximus.helloworld.exception;
 
-import com.einarr.maximus.helloworld.exception.HelloWorldRuntimeException;
-import com.einarr.maximus.helloworld.model.Identity;
-
-import java.net.InetAddress;
-
-public class IdentityServiceImpl implements IdentityService {
-
-    /**
-     * {@inheritDoc}
-     *
-     * @return New instance of {@link Identity} object
-     */
-    @Override
-    public Identity identify() {
-        try {
-            return Identity.builder()
-                    .userName(System.getProperty("user.name"))
-                    .host(InetAddress.getLocalHost().getHostName())
-                    .ipAddress(InetAddress.getLocalHost().getHostAddress())
-                    .build();
-        } catch (Exception e) {
-            throw new HelloWorldRuntimeException(e); //TODO Implement error handling with error messages and error codes
-        }
+public class HelloWorldRuntimeException extends RuntimeException {
+    public HelloWorldRuntimeException(final Exception e) {
+        super(e);
     }
 }
