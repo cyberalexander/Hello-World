@@ -11,7 +11,7 @@ currently logged in to the system and runs the application.
 as new one and creates new entry in database. 
 5) Then application reads new entry from a database and prints the greeting to console.
 
-#### Notes:
+#### Notes
 * Unique identifier = env + user
 * Same env can have multiple users
 
@@ -22,6 +22,7 @@ as new one and creates new entry in database.
 |-------------|----------|
 | XXXXXXX     | YYYYYYY  |
 | AAAAAAA     | BBBBBBB  |
+| CCCCCCC     | DDDDDDD  |
 
 ##### Notes
 * Columns environment and user are the part of **composite primary_key**
@@ -33,8 +34,12 @@ $ mvn -U clean install
 $ java -jar target/hello-world.jar
 ```
 
-## Technologies
+### Technologies
 * Java 17
 * Maven
+* Junit 5
 * Database *TBD*
 * *TBD*
+
+### Code quality
+* Checkstyle
