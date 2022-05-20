@@ -22,11 +22,14 @@
  */
 package com.einarr.maximus.helloworld;
 
-import static java.lang.System.out;
+import lombok.extern.log4j.Log4j2;
 
+@Log4j2
 public class HelloWorldApplication {
 
     public static void main(final String[] args) {
-        out.println("Hello, " + System.getProperty("user.name") + "!");
+        if (log.isInfoEnabled()) {
+            log.info("Hello, {}!", System.getProperty("user.name"));
+        }
     }
 }
