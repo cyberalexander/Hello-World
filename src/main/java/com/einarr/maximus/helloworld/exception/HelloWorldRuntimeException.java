@@ -27,4 +27,8 @@ public class HelloWorldRuntimeException extends RuntimeException {
     public HelloWorldRuntimeException(final Exception e) {
         super(e);
     }
+
+    public HelloWorldRuntimeException(final ErrorCode errorCode, final Exception e) {
+        super(errorCode.getErrorMessage(), e);
+    }
 }

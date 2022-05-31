@@ -21,31 +21,32 @@
  * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package com.einarr.maximus.helloworld.service;
+package com.einarr.maximus.helloworld.exception;
 
-import com.einarr.maximus.helloworld.exception.ErrorCode;
-import com.einarr.maximus.helloworld.exception.HelloWorldRuntimeException;
-import com.einarr.maximus.helloworld.model.Identity;
-
-import java.net.InetAddress;
-
-public class IdentityServiceImpl implements IdentityService {
+public enum ErrorCode {
+    /**
+     * Error code represents the failure in case of identifying the caller by IdentityService.
+     */
+    ID_SRV_1000("Exception occurred while identifying the caller.");
 
     /**
-     * {@inheritDoc}
-     *
-     * @return New instance of {@link Identity} object
+     * Variable represents the error message, to be propagated to Exception class.
      */
-    @Override
-    public Identity identify() {
-        try {
-            return Identity.builder()
-                    .userName(System.getProperty("user.name"))
-                    .host(InetAddress.getLocalHost().getHostName())
-                    .ipAddress(InetAddress.getLocalHost().getHostAddress())
-                    .build();
-        } catch (Exception e) {
-            throw new HelloWorldRuntimeException(ErrorCode.ID_SRV_1000, e);
-        }
+    private final String message;
+
+    ErrorCode(final String errorMessage) {
+        this.message = errorMessage;
+    }
+
+    public String getCode() {
+        return code();
+    }
+
+    public String getErrorMessage() {
+        return code().concat(": ").concat(message);
+    }
+
+    private String code() {
+        return this.name().replace("_", "-");
     }
 }

@@ -22,12 +22,12 @@
  */
 package com.einarr.maximus.helloworld.service;
 
+import com.einarr.maximus.helloworld.exception.ErrorCode;
+import com.einarr.maximus.helloworld.exception.HelloWorldRuntimeException;
 import com.einarr.maximus.helloworld.model.Identity;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import java.net.SocketException;
-import java.net.UnknownHostException;
+import org.mockito.Mockito;
 
 class IdentityServiceImplTests {
 
@@ -50,7 +50,18 @@ class IdentityServiceImplTests {
     }
 
     @Test
-    void testIdentityHost() throws UnknownHostException, SocketException {
+    void testIdentityHost() {
         Assertions.assertNotNull(service.identify().getHost());
+    }
+
+    @Test
+    void testIdentifyErrorHandling() {
+        IdentityServiceImpl mock = Mockito.mock(IdentityServiceImpl.class);
+        Mockito.when(mock.identify()).thenThrow(
+                new HelloWorldRuntimeException(ErrorCode.ID_SRV_1000, new NullPointerException())
+        );
+
+        HelloWorldRuntimeException error = Assertions.assertThrows(HelloWorldRuntimeException.class, mock::identify);
+        Assertions.assertEquals(error.getMessage(), ErrorCode.ID_SRV_1000.getErrorMessage());
     }
 }
