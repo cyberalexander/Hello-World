@@ -35,7 +35,7 @@ public class HelloWorldApplication {
         printApplicationHostInformation(identityService.identify());
     }
 
-    private static void printApplicationHostInformation(Identity hostDetails) {
+    private static void printApplicationHostInformation(final Identity hostDetails) {
         if (log.isInfoEnabled()) {
             log.info("\nUSERNAME: {}\nHOST:     {}\nIP:       {}\n",
                     hostDetails.getUserName(), hostDetails.getHost(), hostDetails.getIpAddress());
