@@ -22,14 +22,23 @@
  */
 package com.einarr.maximus.helloworld;
 
+import com.einarr.maximus.helloworld.model.Identity;
+import com.einarr.maximus.helloworld.service.IdentityService;
+import com.einarr.maximus.helloworld.service.IdentityServiceImpl;
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
 public class HelloWorldApplication {
 
     public static void main(final String[] args) {
+        IdentityService identityService = new IdentityServiceImpl();
+        printApplicationHostInformation(identityService.identify());
+    }
+
+    private static void printApplicationHostInformation(Identity hostDetails) {
         if (log.isInfoEnabled()) {
-            log.info("Hello, {}!", System.getProperty("user.name"));
+            log.info("\nUSERNAME: {}\nHOST:     {}\nIP:       {}\n",
+                    hostDetails.getUserName(), hostDetails.getHost(), hostDetails.getIpAddress());
         }
     }
 }
